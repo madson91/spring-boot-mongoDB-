@@ -1,4 +1,4 @@
-package com.madson.springBootMongoDb;
+package com.madson.springbootmongodb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

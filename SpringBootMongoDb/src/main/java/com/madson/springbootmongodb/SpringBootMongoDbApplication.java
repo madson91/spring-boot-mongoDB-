@@ -1,4 +1,4 @@
-package com.madson.springBootMongoDb;
+package com.madson.springbootmongodb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
