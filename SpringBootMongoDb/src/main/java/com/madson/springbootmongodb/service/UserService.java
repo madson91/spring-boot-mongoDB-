@@ -19,7 +19,6 @@ public class UserService {
 
 	public List<User> findAll() {
 		return userRepo.findAll();
-
 	}
 
 	public User findById(String id) {
@@ -46,12 +45,12 @@ public class UserService {
 	}
 
 	private void updateData(User newUser, User obj) {
-		newUser.setNome(obj.getNome());
+		newUser.setName(obj.getName());
 		newUser.setEmail(obj.getEmail());
 	}
 
 	public User fromUserDto(UserDTO dto) {
-		return new User(dto.getId(), dto.getNome(), dto.getEmail());
+		return new User(dto.getId(), dto.getName(), dto.getEmail());
 	}
 
 }
