@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madson.springbootmongodb.domain.User;
+import com.madson.springbootmongodb.dto.UserDTO;
 import com.madson.springbootmongodb.repository.UserRepository;
 import com.madson.springbootmongodb.service.exception.copy.ObjectNotFoundException;
 
@@ -27,6 +28,14 @@ public class UserService {
 		if(user.isEmpty())
 			throw new ObjectNotFoundException("Usuario não encontrado");
 		return user.get();
+	}
+	
+	public User insert(User obj) {
+		return userRepo.insert(obj);
+	}
+	
+	public User fromUserDto(UserDTO dto) {
+		return new User(dto.getId(), dto.getNome(), dto.getEmail());
 	}
 
 }
