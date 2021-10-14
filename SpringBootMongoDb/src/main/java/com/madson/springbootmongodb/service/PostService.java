@@ -1,5 +1,6 @@
 package com.madson.springbootmongodb.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,11 @@ public class PostService {
 	public List<Post> findByTitle(String text){
 		
 		return postRepo.findbyTitle(text);
+	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate){
+		
+		return postRepo.fullSearch(text, minDate, maxDate);	
 	}
 
 }
