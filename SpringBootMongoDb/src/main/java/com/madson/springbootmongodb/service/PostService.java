@@ -1,5 +1,6 @@
 package com.madson.springbootmongodb.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class PostService {
 		if (user.isEmpty())
 			throw new ObjectNotFoundException("Postagem não encontrada");
 		return user.get();
+	}
+	
+	public List<Post> findByTitle(String text){
+		
+		return postRepo.findByTitleContainingIgnoreCase(text);
+		
 	}
 
 }
