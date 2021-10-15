@@ -15,6 +15,8 @@ import com.madson.springbootmongodb.domain.Post;
 import com.madson.springbootmongodb.resources.util.URL;
 import com.madson.springbootmongodb.service.PostService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/posts")
 public class PostResource {
@@ -22,6 +24,7 @@ public class PostResource {
 	@Autowired
 	private PostService service;
 	
+	@ApiOperation(value="Busca todos as postagens do id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
 	public ResponseEntity<Post> findById( @PathVariable String id){
 
@@ -29,6 +32,7 @@ public class PostResource {
 		return ResponseEntity.ok().body(obj);
 	}
 
+	@ApiOperation(value="Busca todos as postagens peo título")
 	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text" ,defaultValue = "") String text) {
 		

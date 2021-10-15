@@ -18,6 +18,10 @@ import com.madson.springbootmongodb.domain.User;
 import com.madson.springbootmongodb.dto.UserDTO;
 import com.madson.springbootmongodb.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
@@ -25,6 +29,7 @@ public class UserResource {
 	@Autowired
 	private UserService service;
 	
+	@ApiOperation(value="Busca todos os usuarios")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findAll(){
 		
@@ -33,6 +38,7 @@ public class UserResource {
 		return ResponseEntity.ok().body(listaDto);
 	}
 	
+	@ApiOperation(value="Busca por id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
 	public ResponseEntity<UserDTO> findById( @PathVariable String id){
 
@@ -40,6 +46,7 @@ public class UserResource {
 		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
 
+	@ApiOperation(value="Adiciona usuário")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody UserDTO userDTO){
 		
@@ -49,6 +56,10 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Não é possível excluir um usuário ....."),
+			@ApiResponse(code = 404, message = "Código inexistente") })
+	@ApiOperation(value="apaga usuário pelo id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable String id){
 
@@ -56,6 +67,7 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Atualiza o usuário por id")
 	@RequestMapping(value = "/{id}" , method = RequestMethod.PUT)
 	public ResponseEntity<User> update(@RequestBody UserDTO userDTO, @PathVariable String id){
 		
@@ -65,6 +77,7 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Busca todos as postagens do usuário")
 	@RequestMapping(value = "/{id}/posts" ,method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findPosts( @PathVariable String id){
 
